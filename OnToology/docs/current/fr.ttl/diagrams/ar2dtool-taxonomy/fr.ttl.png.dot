@@ -1,0 +1,20 @@
+digraph ar2dtool_diagram { 
+rankdir=LR;
+size="1000"
+node [shape = rectangle, color="black"]; "base:ConfidenceConceptScheme" "http://purl.org/spar/bido/ScholarlyVenueManagementSystem" "base:ConveningOrganization" "base:ConfidenceConcept" "foaf:Agent" "http://purl.org/spar/fabio/Expression" "base:ReviewVersion" "http://purl.org/spar/fabio/Work" "base:RatingConcept" "http://purl.org/spar/fabio/Endeavour" "base:DiscreteRatingConceptScheme" "http://www.w3.org/2004/02/skos/core#ConceptScheme" "base:TrackingSystem" "foaf:Person" "http://purl.org/spar/fabio/Reply" "base:DiscreteConfidenceConceptScheme" "base:RatingConceptScheme" "http://www.w3.org/2004/02/skos/core#Concept" "http://purl.org/spar/fabio/Review" ; /*classes style*/
+	"base:ConfidenceConcept" -> "http://www.w3.org/2004/02/skos/core#Concept" [ label = "rdfs:subClassOf" ];
+	"base:DiscreteConfidenceConceptScheme" -> "base:ConfidenceConceptScheme" [ label = "rdfs:subClassOf" ];
+	"http://purl.org/spar/fabio/Reply" -> "http://purl.org/spar/fabio/Work" [ label = "rdfs:subClassOf" ];
+	"http://purl.org/spar/fabio/Expression" -> "http://purl.org/spar/fabio/Endeavour" [ label = "rdfs:subClassOf" ];
+	"base:ConfidenceConceptScheme" -> "http://www.w3.org/2004/02/skos/core#ConceptScheme" [ label = "rdfs:subClassOf" ];
+	"base:RatingConcept" -> "http://www.w3.org/2004/02/skos/core#Concept" [ label = "rdfs:subClassOf" ];
+	"base:ReviewVersion" -> "http://purl.org/spar/fabio/Comment" [ label = "rdfs:subClassOf" ];
+	"foaf:Person" -> "foaf:Agent" [ label = "rdfs:subClassOf" ];
+	"http://purl.org/spar/fabio/Review" -> "http://purl.org/spar/fabio/Work" [ label = "rdfs:subClassOf" ];
+	"base:DiscreteRatingConceptScheme" -> "base:RatingConceptScheme" [ label = "rdfs:subClassOf" ];
+	"base:TrackingSystem" -> "http://purl.org/spar/bido/ScholarlyVenueManagementSystem" [ label = "rdfs:subClassOf" ];
+	"base:ConveningOrganization" -> "foaf:Agent" [ label = "rdfs:subClassOf" ];
+	"http://purl.org/spar/fabio/Work" -> "http://purl.org/spar/fabio/Endeavour" [ label = "rdfs:subClassOf" ];
+	"base:RatingConceptScheme" -> "http://www.w3.org/2004/02/skos/core#ConceptScheme" [ label = "rdfs:subClassOf" ];
+
+}

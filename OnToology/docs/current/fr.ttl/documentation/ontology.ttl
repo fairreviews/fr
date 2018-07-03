@@ -1,0 +1,354 @@
+@prefix : <http://purl.org/spar/fr#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://purl.org/spar/fr> .
+
+<http://purl.org/spar/fr> rdf:type owl:Ontology ;
+                           owl:imports <http://purl.org/spar/datacite/> ;
+                           <http://purl.org/dc/elements/1.1/contributor> "Silvio Peroni"^^xsd:string ;
+                           <http://purl.org/dc/elements/1.1/creator> <https://w3id.org/people/idafensp> ,
+                                                                     <https://w3id.org/people/mpoveda> ;
+                           <http://purl.org/dc/elements/1.1/publisher> <http://www.oeg-upm.net/> ;
+                           <http://purl.org/dc/elements/1.1/title> "FAIR reviews ontology"@en ;
+                           <http://purl.org/dc/terms/created> "2017-09-01"^^xsd:date ;
+                           <http://purl.org/dc/terms/issued> "2017-11-07"^^xsd:date ;
+                           <http://purl.org/dc/terms/modified> "2018-07-03"^^xsd:date ;
+                           <http://purl.org/vocab/vann/preferredNamespacePrefix> "fr"^^xsd:date ;
+                           <http://purl.org/vocab/vann/preferredNamespaceUri> "http://purl.org/spar/fr/"^^xsd:string ;
+                           rdfs:comment "This vocabulary represents scientific reviews. This model is used to annotate http://fairreviews.linkeddata.es/ data."@en ;
+                           owl:priorVersion <https://w3id.org/fr/def/core#> ;
+                           owl:versionInfo "1.0"^^xsd:string .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/creator
+<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+<http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/language
+<http://purl.org/dc/elements/1.1/language> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/rights
+<http://purl.org/dc/elements/1.1/rights> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty ;
+                                   rdfs:subPropertyOf <http://purl.org/dc/elements/1.1/creator> ;
+                                   rdfs:range <http://purl.org/dc/terms/Agent> .
+
+
+###  http://purl.org/dc/terms/issued
+<http://purl.org/dc/terms/issued> rdf:type owl:AnnotationProperty ;
+                                  rdfs:subPropertyOf <http://purl.org/dc/elements/1.1/date> ;
+                                  rdfs:range rdfs:Literal .
+
+
+###  http://purl.org/dc/terms/language
+<http://purl.org/dc/terms/language> rdf:type owl:AnnotationProperty ;
+                                    rdfs:subPropertyOf <http://purl.org/dc/elements/1.1/language> ;
+                                    rdfs:range <http://purl.org/dc/terms/LinguisticSystem> .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty ;
+                                   rdfs:subPropertyOf <http://purl.org/dc/elements/1.1/rights> ;
+                                   rdfs:range <http://purl.org/dc/terms/LicenseDocument> .
+
+
+###  http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> rdf:type owl:AnnotationProperty ;
+                                    rdfs:subPropertyOf <http://purl.org/dc/elements/1.1/date> ;
+                                    rdfs:range rdfs:Literal .
+
+
+###  http://www.w3.org/2004/02/skos/core#definition
+<http://www.w3.org/2004/02/skos/core#definition> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#prefLabel
+<http://www.w3.org/2004/02/skos/core#prefLabel> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:ObjectProperty .
+
+
+###  http://purl.org/dc/terms/language
+<http://purl.org/dc/terms/language> rdf:type owl:ObjectProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:ObjectProperty .
+
+
+###  http://purl.org/spar/fr/hasRating
+<http://purl.org/spar/fr/hasRating> rdf:type owl:ObjectProperty ;
+                                    rdfs:domain <http://purl.org/spar/fabio/Review> ;
+                                    rdfs:range <http://purl.org/spar/fr/RatingConcept> ;
+                                    rdfs:comment "The relation between a review and a given rating assigned by a reviewer."@en ;
+                                    rdfs:label "has rating"@en .
+
+
+###  http://purl.org/spar/fr/hasReviewerConfidence
+<http://purl.org/spar/fr/hasReviewerConfidence> rdf:type owl:ObjectProperty ;
+                                                rdfs:domain <http://purl.org/spar/fabio/Review> ;
+                                                rdfs:range <http://purl.org/spar/fr/ConfidenceConcept> ;
+                                                rdfs:comment "Relation between a review the confidence set by the author about the review topic. As the review can be written only by one author the confidence is assumed to be for such author about the given paper without need of creating a new class involving the three actors in a n-ary alike solution."^^xsd:string ;
+                                                rdfs:label "has reviewer confidence"@en .
+
+
+###  http://purl.org/spar/fr/hasSubReviewer
+<http://purl.org/spar/fr/hasSubReviewer> rdf:type owl:ObjectProperty ;
+                                         rdfs:domain <http://purl.org/spar/fabio/Review> ;
+                                         rdfs:range <http://xmlns.com/foaf/0.1/Agent> ;
+                                         rdfs:label "The relation between a review and agents that have contributed to the overall review as sub-reviwers."@en ,
+                                                    "has sub-reviewer"@en .
+
+
+###  http://purl.org/spar/fr/issuedAt
+<http://purl.org/spar/fr/issuedAt> rdf:type owl:ObjectProperty ;
+                                   rdfs:domain <http://purl.org/spar/fabio/Review> ;
+                                   rdfs:range <http://purl.org/spar/fr/TrackingSystem> ;
+                                   rdfs:comment "The relation between a review and the tracking or scholarly venue management system where the reviewing process took place."@en ;
+                                   rdfs:label "issued at"@en .
+
+
+###  http://purl.org/spar/fr/issuedFor
+<http://purl.org/spar/fr/issuedFor> rdf:type owl:ObjectProperty ;
+                                    rdfs:domain <http://purl.org/spar/fabio/Review> ;
+                                    rdfs:range <http://purl.org/spar/fr/ConveningOrganization> ;
+                                    rdfs:comment "The realation between a review and the entity (e.g. conference, journal) that it was issued for (usually the one that requested the review)."@en ;
+                                    rdfs:label "issued for"@en .
+
+
+###  http://purl.org/spar/fr/releasedBy
+<http://purl.org/spar/fr/releasedBy> rdf:type owl:ObjectProperty ;
+                                     rdfs:domain <http://purl.org/spar/fabio/Review> ;
+                                     rdfs:range <http://xmlns.com/foaf/0.1/Agent> ;
+                                     rdfs:comment "The relation between the review and the agent publishing it. It might be the the author of the review or conference or journal to which the scientific resource was submitted to."@en ;
+                                     rdfs:label "released by"@en .
+
+
+###  http://www.w3.org/2004/02/skos/core#closeMatch
+<http://www.w3.org/2004/02/skos/core#closeMatch> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#inScheme
+<http://www.w3.org/2004/02/skos/core#inScheme> rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://purl.org/dc/terms/issued
+<http://purl.org/dc/terms/issued> rdf:type owl:DatatypeProperty .
+
+
+###  http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> rdf:type owl:DatatypeProperty .
+
+
+###  http://purl.org/spar/fabio/hasURL
+<http://purl.org/spar/fabio/hasURL> rdf:type owl:DatatypeProperty ;
+                                    rdfs:domain <http://purl.org/spar/fabio/Endeavour> ;
+                                    rdfs:range xsd:anyURI .
+
+
+###  http://purl.org/spar/fr/confidenceValue
+<http://purl.org/spar/fr/confidenceValue> rdf:type owl:DatatypeProperty ;
+                                          rdfs:domain <http://purl.org/spar/fr/ConfidenceConcept> ;
+                                          rdfs:range rdfs:Literal ;
+                                          rdfs:comment "Confidence value of expertise in the review topic given by the reviwer"@en ;
+                                          rdfs:label "confidence value"@en .
+
+
+###  http://purl.org/spar/fr/ratingValue
+<http://purl.org/spar/fr/ratingValue> rdf:type owl:DatatypeProperty ;
+                                      rdfs:domain <http://purl.org/spar/fr/RatingConcept> ;
+                                      rdfs:range rdfs:Literal ;
+                                      rdfs:comment "Numerical value of the rating given to a review."@en ;
+                                      rdfs:label "rating value"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://lexvo.org/ontology#Language
+<http://lexvo.org/ontology#Language> rdf:type owl:Class ;
+                                     rdfs:comment "Language of the scientific contribution (paper, review, etc.)."@en ;
+                                     rdfs:label "Language"@en .
+
+
+###  http://purl.org/dc/terms/Agent
+<http://purl.org/dc/terms/Agent> rdf:type owl:Class .
+
+
+###  http://purl.org/spar/bido/ScholarlyVenueManagementSystem
+<http://purl.org/spar/bido/ScholarlyVenueManagementSystem> rdf:type owl:Class .
+
+
+###  http://purl.org/spar/datacite/Identifier
+<http://purl.org/spar/datacite/Identifier> rdf:type owl:Class ;
+                                           rdfs:comment "Un identificador que identifica de forma única a una entidad - tal como una agencia de financiación, una persona y un recurso - que pertenece a un esquema particular, como los especificados por individuos de la clase datacite:IdentifierScheme."@es ;
+                                           rdfs:label "identificador"@es .
+
+
+###  http://purl.org/spar/fabio/Comment
+<http://purl.org/spar/fabio/Comment> rdf:type owl:Class .
+
+
+###  http://purl.org/spar/fabio/Endeavour
+<http://purl.org/spar/fabio/Endeavour> rdf:type owl:Class .
+
+
+###  http://purl.org/spar/fabio/Expression
+<http://purl.org/spar/fabio/Expression> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://purl.org/spar/fabio/Endeavour> .
+
+
+###  http://purl.org/spar/fabio/Reply
+<http://purl.org/spar/fabio/Reply> rdf:type owl:Class ;
+                                   rdfs:subClassOf <http://purl.org/spar/fabio/Work> .
+
+
+###  http://purl.org/spar/fabio/Review
+<http://purl.org/spar/fabio/Review> rdf:type owl:Class ;
+                                    rdfs:subClassOf <http://purl.org/spar/fabio/Work> .
+
+
+###  http://purl.org/spar/fabio/Work
+<http://purl.org/spar/fabio/Work> rdf:type owl:Class ;
+                                  rdfs:subClassOf <http://purl.org/spar/fabio/Endeavour> .
+
+
+###  http://purl.org/spar/fr/ConfidenceConcept
+<http://purl.org/spar/fr/ConfidenceConcept> rdf:type owl:Class ;
+                                            rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                            rdfs:comment "The set of values of a given confidence scale."@en ;
+                                            rdfs:label "Confidence concept"@en .
+
+
+###  http://purl.org/spar/fr/ConfidenceConceptScheme
+<http://purl.org/spar/fr/ConfidenceConceptScheme> rdf:type owl:Class ;
+                                                  rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
+                                                  rdfs:comment "A scale defining the confidence of a reviewer for a given topic."@en ;
+                                                  rdfs:label "Confidence concept scheme"@en .
+
+
+###  http://purl.org/spar/fr/ConveningOrganization
+<http://purl.org/spar/fr/ConveningOrganization> rdf:type owl:Class ;
+                                                rdfs:subClassOf <http://xmlns.com/foaf/0.1/Agent> ;
+                                                rdfs:comment "A venue (e.g. conference, workshop), a expression collection (e.g. journal, special issue), or an individual agent (e.g. organization, researcher) collecting scientific contributions."@en ;
+                                                rdfs:label "Convening organization"@en .
+
+
+###  http://purl.org/spar/fr/DiscreteConfidenceConceptScheme
+<http://purl.org/spar/fr/DiscreteConfidenceConceptScheme> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <http://purl.org/spar/fr/ConfidenceConceptScheme> ;
+                                                          rdfs:comment "A discrete scale defining the confidence of a reviewer for a given topic."@en ;
+                                                          rdfs:label "Discrete confidence concept scheme"@en .
+
+
+###  http://purl.org/spar/fr/DiscreteRatingConceptScheme
+<http://purl.org/spar/fr/DiscreteRatingConceptScheme> rdf:type owl:Class ;
+                                                      rdfs:subClassOf <http://purl.org/spar/fr/RatingConceptScheme> ;
+                                                      rdfs:comment "A discrete scale defining the rating given by a reviewer for a specific scientific contribution."@en ;
+                                                      rdfs:label "Discrete rating concept scheme"@en .
+
+
+###  http://purl.org/spar/fr/RatingConcept
+<http://purl.org/spar/fr/RatingConcept> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                        rdfs:comment "The set of values of a given rating scale."@en ;
+                                        rdfs:label "Rating concept"@en .
+
+
+###  http://purl.org/spar/fr/RatingConceptScheme
+<http://purl.org/spar/fr/RatingConceptScheme> rdf:type owl:Class ;
+                                              rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
+                                              rdfs:comment "A scale defining the rating given by a reviewer for a specific scientific contribution."@en ;
+                                              rdfs:label "Rating concept scheme"@en .
+
+
+###  http://purl.org/spar/fr/ReviewVersion
+<http://purl.org/spar/fr/ReviewVersion> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://purl.org/spar/fabio/Comment> ;
+                                        rdfs:comment "A version of a given review, defining its content and rating, which may vary over the time ."@en ;
+                                        rdfs:label "Review Version"@en .
+
+
+###  http://purl.org/spar/fr/TrackingSystem
+<http://purl.org/spar/fr/TrackingSystem> rdf:type owl:Class ;
+                                         rdfs:subClassOf <http://purl.org/spar/bido/ScholarlyVenueManagementSystem> ;
+                                         rdfs:comment "The platform where the review process takes place."@en ;
+                                         rdfs:label "Tracking system"@en .
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+<http://www.w3.org/2004/02/skos/core#Concept> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2004/02/skos/core#ConceptScheme
+<http://www.w3.org/2004/02/skos/core#ConceptScheme> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/odrl/2/Policy
+<http://www.w3.org/ns/odrl/2/Policy> rdf:type owl:Class ;
+                                     rdfs:comment "A non-empty group of Permissions and/or Prohibitions."@en ;
+                                     rdfs:label "Policy"@en .
+
+
+###  http://xmlns.com/foaf/0.1/Agent
+<http://xmlns.com/foaf/0.1/Agent> rdf:type owl:Class ;
+                                  rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+<http://xmlns.com/foaf/0.1/Person> rdf:type owl:Class ;
+                                   rdfs:subClassOf <http://xmlns.com/foaf/0.1/Agent> ;
+                                   rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://purl.org/NET/rdflicense/cc-by4.0
+<http://purl.org/NET/rdflicense/cc-by4.0> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.org/spar/fr
+<http://purl.org/spar/fr> rdf:type owl:NamedIndividual ;
+                          <http://purl.org/dc/terms/license> <http://purl.org/NET/rdflicense/cc-by4.0> .
+
+
+###  http://purl.org/spar/fr/
+<http://purl.org/spar/fr/> rdf:type owl:NamedIndividual .
+
+
+###  Generated by the OWL API (version 5.1.0) https://github.com/owlcs/owlapi/

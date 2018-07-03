@@ -1,0 +1,31 @@
+digraph ar2dtool_diagram { 
+rankdir=LR;
+size="1501"
+node [shape = rectangle, color="orange"]; "base:ConveningOrganization" "base:ConfidenceConcept" "foaf:Agent" "base:RatingConcept" "http://purl.org/spar/fabio/Endeavour" "base:TrackingSystem" "http://purl.org/spar/fabio/Review" "dcterms:Agent" ; /*classes style*/
+	"http://purl.org/spar/fr" -> "http://www.oeg-upm.net/" [ label = "dc:publisher" ];
+	"http://purl.org/spar/fr" -> "http://purl.org/NET/rdflicense/cc-by4.0" [ label = "dcterms:license" ];
+	"http://purl.org/spar/fr" -> "https://w3id.org/fr/def/core#" [ label = "owl:priorVersion" ];
+	"http://purl.org/spar/fr" -> "https://w3id.org/people/mpoveda" [ label = "dc:creator" ];
+	"http://purl.org/spar/fr" -> "http://purl.org/spar/datacite/" [ label = "owl:imports" ];
+	"http://purl.org/spar/fr" -> "https://w3id.org/people/idafensp" [ label = "dc:creator" ];
+	"dcterms:license" -> "dc:rights" [ label = "rdfs:subPropertyOf" ];
+	"dcterms:issued" -> "dc:date" [ label = "rdfs:subPropertyOf" ];
+	"dcterms:modified" -> "dc:date" [ label = "rdfs:subPropertyOf" ];
+	"dcterms:language" -> "dc:language" [ label = "rdfs:subPropertyOf" ];
+	"dcterms:creator" -> "dc:creator" [ label = "rdfs:subPropertyOf" ];
+	"owl:Thing" -> "dcterms:LicenseDocument" [ label = "dcterms:license" ];
+	"http://purl.org/spar/fabio/Review" -> "foaf:Agent" [ label = "base:hasSubReviewer" ];
+	"owl:Thing" -> "dcterms:LinguisticSystem" [ label = "dcterms:language" ];
+	"http://purl.org/spar/fabio/Review" -> "base:RatingConcept" [ label = "base:hasRating" ];
+	"http://purl.org/spar/fabio/Review" -> "foaf:Agent" [ label = "base:releasedBy" ];
+	"http://purl.org/spar/fabio/Review" -> "base:ConveningOrganization" [ label = "base:issuedFor" ];
+	"http://purl.org/spar/fabio/Review" -> "base:TrackingSystem" [ label = "base:issuedAt" ];
+	"base:RatingConcept" -> "rdfs:Literal" [ label = "base:ratingValue" ];
+	"owl:Thing" -> "dcterms:Agent" [ label = "dcterms:creator" ];
+	"owl:Thing" -> "rdfs:Literal" [ label = "dcterms:issued" ];
+	"base:ConfidenceConcept" -> "rdfs:Literal" [ label = "base:confidenceValue" ];
+	"owl:Thing" -> "rdfs:Literal" [ label = "dcterms:modified" ];
+	"http://purl.org/spar/fabio/Endeavour" -> "xsd:anyURI" [ label = "http://purl.org/spar/fabio/hasURL" ];
+	"http://purl.org/spar/fabio/Review" -> "base:ConfidenceConcept" [ label = "base:hasReviewerConfidence" ];
+
+}
